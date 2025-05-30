@@ -1,12 +1,18 @@
 import { PawPrint } from './pawprint';
 import sittingSrc from '../assets/sitting.png';
 import tailSrc from '../assets/tail.png';
+import standingSrc from '../assets/standing.png'
 
 const sittingImage = new Image();
 sittingImage.src = sittingSrc;
 
 const tailImage = new Image();
 tailImage.src = tailSrc;
+
+const standingImage = new Image()
+standingImage.src = standingSrc;
+
+console.log(standingImage);
 
 export enum WalkerState {
     Walking = 'walking',
@@ -49,12 +55,13 @@ export class Walker {
         this.stateTimer = 10 * 60;
         this.stepIndex = 0;
         this.walkStepDelay = 0;
-
+        /*
         if (this.state === WalkerState.Standing) {
             this.lastStepPaws.forEach(p => {
                 if (p) p.lifted = false;
             });
         }
+        */
     }
 
     update(canvasWidth: number, canvasHeight: number, time: number) {
@@ -116,9 +123,15 @@ export class Walker {
     }
 
     draw(ctx: CanvasRenderingContext2D) {
+
         // Draw trail **first**, only if not Sitting
         if (this.state !== WalkerState.Sitting) {
             this.pawprints.forEach(p => p.draw(ctx));
+        }
+
+        if(this.state === WalkerState.Standing)
+        {
+            ctx.drawImage(standingImage, this.x - 226, this.y - 166, 226, 166);
         }
 
         if (this.state === WalkerState.Sitting) {
