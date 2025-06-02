@@ -132,6 +132,7 @@ export class Walker {
         if(this.state === WalkerState.Standing)
         {
             ctx.drawImage(standingImage, this.x - 226, this.y - 166, 226, 166);
+            ctx.restore();
         }
 
         if (this.state === WalkerState.Sitting) {
