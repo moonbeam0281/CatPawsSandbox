@@ -1,7 +1,7 @@
 import { PawPrint } from './pawprint';
 import sittingSrc from '../assets/sitting.png';
 import tailSrc from '../assets/tail.png';
-import standingSrc from '../assets/standing.png'
+import standingSrc from '../assets/standing.png';
 
 const sittingImage = new Image();
 sittingImage.src = sittingSrc;
@@ -9,10 +9,8 @@ sittingImage.src = sittingSrc;
 const tailImage = new Image();
 tailImage.src = tailSrc;
 
-const standingImage = new Image()
+const standingImage = new Image();
 standingImage.src = standingSrc;
-
-console.log(standingImage);
 
 export enum WalkerState {
     Walking = 'walking',
@@ -132,7 +130,6 @@ export class Walker {
         if(this.state === WalkerState.Standing)
         {
             ctx.drawImage(standingImage, this.x - 226, this.y - 166, 226, 166);
-            ctx.restore();
         }
 
         if (this.state === WalkerState.Sitting) {
